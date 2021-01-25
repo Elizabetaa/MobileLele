@@ -1,10 +1,9 @@
 package com.example.mobiLelele.mobiLelele.entities;
 
 
-import com.example.mobiLelele.mobiLelele.entities.enumerated.Roles;
+import com.example.mobiLelele.mobiLelele.entities.enums.Roles;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "user_roles")

@@ -1,6 +1,6 @@
 package com.example.mobiLelele.mobiLelele.entities;
 
-import com.example.mobiLelele.mobiLelele.entities.enumerated.Categories;
+import com.example.mobiLelele.mobiLelele.entities.enums.Categories;
 
 import javax.persistence.*;
 
