@@ -20,12 +20,12 @@ public class Offer extends BaseEntity{
     @Enumerated(EnumType.STRING)
     private Transmissions transmission;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "model_id")
     private Model  model;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "seller_id")
     private User seller;
 

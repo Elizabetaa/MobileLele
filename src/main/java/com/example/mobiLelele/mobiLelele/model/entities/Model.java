@@ -20,7 +20,7 @@ public class Model extends BaseEntity {
 
     private Integer endYear;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     private Brand brand;
 
     public String getName() {
