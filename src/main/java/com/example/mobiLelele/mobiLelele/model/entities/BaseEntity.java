@@ -1,4 +1,4 @@
-package com.example.mobiLelele.mobiLelele.entities;
+package com.example.mobiLelele.mobiLelele.model.entities;
 
 import javax.persistence.*;
 import java.time.Instant;

@@ -1,6 +1,4 @@
-package com.example.mobiLelele.mobiLelele.entities;
-
-import org.dom4j.rule.Mode;
+package com.example.mobiLelele.mobiLelele.model.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

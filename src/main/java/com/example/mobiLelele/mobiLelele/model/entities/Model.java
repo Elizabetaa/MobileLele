@@ -1,11 +1,11 @@
-package com.example.mobiLelele.mobiLelele.entities;
+package com.example.mobiLelele.mobiLelele.model.entities;
 
-import com.example.mobiLelele.mobiLelele.entities.enums.Categories;
+import com.example.mobiLelele.mobiLelele.model.entities.enums.Categories;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "users")
+@Table(name = "models")
 public class Model extends BaseEntity {
 
     private String name;
@@ -68,27 +68,27 @@ public class Model extends BaseEntity {
         return this;
     }
 
-//    public Brand getBrand() {
-//        return brand;
-//    }
-//
-//    public Model setBrand(Brand brand) {
-//        this.brand = brand;
-//        return this;
-//    }
+    public Brand getBrand() {
+        return brand;
+    }
 
-//    @Override
-//    public String toString() {
-//        return "ModelEntity{" +
-//                "name='" + name + '\'' +
-//                ", category=" + category +
-//                ", imageUrl='" + imageUrl + '\'' +
-//                ", startYear=" + startYear +
-//                ", endYar=" + endYear +
-//                ", brand=" + brand +
-//                ", id=" + id +
-//                ", created=" + created +
-//                ", updated=" + updated +
-//                '}';
-//    }
+    public Model setBrand(Brand brand) {
+        this.brand = brand;
+        return this;
+    }
+
+    @Override
+    public String toString() {
+        return "ModelEntity{" +
+                "name='" + name + '\'' +
+                ", category=" + category +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", startYear=" + startYear +
+                ", endYar=" + endYear +
+                ", brand=" + brand +
+                ", id=" + id +
+                ", created=" + created +
+                ", updated=" + updated +
+                '}';
+    }
 }

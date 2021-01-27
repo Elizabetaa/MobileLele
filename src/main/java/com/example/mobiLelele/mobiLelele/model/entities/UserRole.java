@@ -1,7 +1,7 @@
-package com.example.mobiLelele.mobiLelele.entities;
+package com.example.mobiLelele.mobiLelele.model.entities;
 
 
-import com.example.mobiLelele.mobiLelele.entities.enums.Roles;
+import com.example.mobiLelele.mobiLelele.model.entities.enums.Roles;
 
 import javax.persistence.*;
 
