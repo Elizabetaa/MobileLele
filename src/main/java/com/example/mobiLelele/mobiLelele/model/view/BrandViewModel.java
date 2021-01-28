@@ -9,6 +9,7 @@ public class BrandViewModel {
 
     private String name;
     private List<ModelViewModel> models = new ArrayList<>();
+
     public BrandViewModel addModel (ModelViewModel modelViewModel){
         this.models.add(modelViewModel);
         return this;

@@ -24,10 +24,10 @@ public class Offer extends BaseEntity{
     @JoinColumn(name = "model_id")
     private Model  model;
 
-
-    @ManyToOne()
-    @JoinColumn(name = "seller_id")
-    private User seller;
+//
+//    @ManyToOne()
+//    @JoinColumn(name = "seller_id")
+//    private User seller;
 
 
 
@@ -103,12 +103,13 @@ public class Offer extends BaseEntity{
         return this;
     }
 
-    public User getSeller() {
-        return seller;
-    }
-
-    public Offer setSeller(User seller) {
-        this.seller = seller;
-        return this;
-    }
+//
+//    public User getSeller() {
+//        return seller;
+//    }
+//
+//    public Offer setSeller(User seller) {
+//        this.seller = seller;
+//        return this;
+//    }
 }
