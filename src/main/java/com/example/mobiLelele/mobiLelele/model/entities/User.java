@@ -9,6 +9,7 @@ public class User extends BaseEntity {
 
 
     private String username;
+    private String password;
     private String firstName;
     private String lastName;
     private boolean isActive;
@@ -71,6 +72,15 @@ public class User extends BaseEntity {
         return this;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public User setPassword(String password) {
+        this.password = password;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -78,6 +88,7 @@ public class User extends BaseEntity {
                 ", created=" + created +
                 ", updated=" + updated +
                 ", username='" + username + '\'' +
+                ", password='N/A" + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", isActive=" + isActive +

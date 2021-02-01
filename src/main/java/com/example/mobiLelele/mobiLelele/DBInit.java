@@ -1,18 +1,15 @@
 package com.example.mobiLelele.mobiLelele;
 
-import com.example.mobiLelele.mobiLelele.model.entities.BaseEntity;
-import com.example.mobiLelele.mobiLelele.model.entities.Brand;
-import com.example.mobiLelele.mobiLelele.model.entities.Model;
-import com.example.mobiLelele.mobiLelele.model.entities.Offer;
+import com.example.mobiLelele.mobiLelele.model.entities.*;
 import com.example.mobiLelele.mobiLelele.model.entities.enums.Categories;
 import com.example.mobiLelele.mobiLelele.model.entities.enums.Engines;
 import com.example.mobiLelele.mobiLelele.model.entities.enums.Transmissions;
 import com.example.mobiLelele.mobiLelele.repositoriy.BrandRepository;
 import com.example.mobiLelele.mobiLelele.repositoriy.ModelRepository;
 import com.example.mobiLelele.mobiLelele.repositoriy.OfferRepository;
-import org.apache.catalina.Store;
-import org.dom4j.rule.Mode;
+import com.example.mobiLelele.mobiLelele.repositoriy.UserRepository;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
@@ -27,11 +24,15 @@ public class DBInit implements CommandLineRunner {
     private final ModelRepository modelRepository;
     private final BrandRepository brandRepository;
     private final OfferRepository offerRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final UserRepository userRepository;
 
-    public DBInit(ModelRepository modelRepository, BrandRepository brandRepository, OfferRepository offerRepository) {
+    public DBInit(ModelRepository modelRepository, BrandRepository brandRepository, OfferRepository offerRepository, PasswordEncoder passwordEncoder, UserRepository userRepository) {
         this.modelRepository = modelRepository;
         this.brandRepository = brandRepository;
         this.offerRepository = offerRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.userRepository = userRepository;
     }
 
     @Transactional
@@ -54,7 +55,22 @@ public class DBInit implements CommandLineRunner {
         createFiestaOffer(fiestaModel);
         createHondaOffer(escortModel);
 
+        initAdmin();
+
     }
+    private void initAdmin(){
+        User admin = new User();
+
+        admin.setFirstName("Anna")
+                .setLastName("Karerina")
+                .setPassword(passwordEncoder.encode("topSecret"))
+                .setUsername("anna_k");
+        setCurrentTimestamp(admin);
+
+        this.userRepository.save(admin);
+    }
+
+
     private void createHondaOffer(Model model) {
         Offer hondaOffer = new Offer();
 
