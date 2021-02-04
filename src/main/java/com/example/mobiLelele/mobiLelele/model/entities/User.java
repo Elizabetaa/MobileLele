@@ -15,7 +15,7 @@ public class User extends BaseEntity {
     private boolean isActive;
     private String imageUrl;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<UserRole> userRoles;
 
     public String getUsername() {

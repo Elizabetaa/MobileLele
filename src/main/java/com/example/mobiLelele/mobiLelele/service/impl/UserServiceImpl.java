@@ -1,13 +1,17 @@
 package com.example.mobiLelele.mobiLelele.service.impl;
 
 import com.example.mobiLelele.mobiLelele.model.entities.User;
+import com.example.mobiLelele.mobiLelele.model.entities.UserRole;
+import com.example.mobiLelele.mobiLelele.model.entities.enums.Roles;
 import com.example.mobiLelele.mobiLelele.repositoriy.UserRepository;
 import com.example.mobiLelele.mobiLelele.security.CurrentUser;
 import com.example.mobiLelele.mobiLelele.service.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -27,17 +31,26 @@ public class UserServiceImpl implements UserService {
     public boolean authenticate(String username, String password) {
 
         Optional<User> userEntityOptional = userRepository.findByUsername(username);
-        if (userEntityOptional.isEmpty()){
+        if (userEntityOptional.isEmpty()) {
             return false;
-        }else {
+        } else {
             return passwordEncoder.matches(password, userEntityOptional.get().getPassword());
         }
     }
 
     @Override
     public void loginUser(String username) {
-        currentUser.setAnonymous(false);
-        currentUser.setName(username);
+        User user = userRepository.findByUsername(username).orElseThrow();
+
+        List<Roles> userRoles = user.getUserRoles().stream()
+                .map(UserRole::getRole)
+                .collect(Collectors.toList());
+
+
+        currentUser
+                .setAnonymous(false)
+                .setName(user.getUsername())
+                .setUserRoles(userRoles);
     }
 
     @Override
