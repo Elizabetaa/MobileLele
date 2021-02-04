@@ -29,7 +29,7 @@ public class LoginController {
             userService.loginUser(userLoginServiceModel.getUsername());
             return "redirect:/";
         } else {
-            return "redirect:/users/login";
+            return "redirect:auth-login";
         }
 
     }
