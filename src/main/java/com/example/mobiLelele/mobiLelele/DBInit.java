@@ -3,11 +3,9 @@ package com.example.mobiLelele.mobiLelele;
 import com.example.mobiLelele.mobiLelele.model.entities.*;
 import com.example.mobiLelele.mobiLelele.model.entities.enums.Categories;
 import com.example.mobiLelele.mobiLelele.model.entities.enums.Engines;
+import com.example.mobiLelele.mobiLelele.model.entities.enums.Roles;
 import com.example.mobiLelele.mobiLelele.model.entities.enums.Transmissions;
-import com.example.mobiLelele.mobiLelele.repositoriy.BrandRepository;
-import com.example.mobiLelele.mobiLelele.repositoriy.ModelRepository;
-import com.example.mobiLelele.mobiLelele.repositoriy.OfferRepository;
-import com.example.mobiLelele.mobiLelele.repositoriy.UserRepository;
+import com.example.mobiLelele.mobiLelele.repositoriy.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -26,13 +24,15 @@ public class DBInit implements CommandLineRunner {
     private final OfferRepository offerRepository;
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
+    private final UserRoleRepository userRoleRepository;
 
-    public DBInit(ModelRepository modelRepository, BrandRepository brandRepository, OfferRepository offerRepository, PasswordEncoder passwordEncoder, UserRepository userRepository) {
+    public DBInit(ModelRepository modelRepository, BrandRepository brandRepository, OfferRepository offerRepository, PasswordEncoder passwordEncoder, UserRepository userRepository, UserRoleRepository userRoleRepository) {
         this.modelRepository = modelRepository;
         this.brandRepository = brandRepository;
         this.offerRepository = offerRepository;
         this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
+        this.userRoleRepository = userRoleRepository;
     }
 
     @Transactional
@@ -55,19 +55,39 @@ public class DBInit implements CommandLineRunner {
         createFiestaOffer(fiestaModel);
         createHondaOffer(escortModel);
 
-        initAdmin();
+        initUsers();
 
     }
-    private void initAdmin(){
+
+    private void initUsers(){
+        UserRole adminRole = new UserRole().setRole(Roles.ADMIN);
+        UserRole userRole = new UserRole().setRole(Roles.USER);
+
+        userRoleRepository.save(adminRole);
+        userRoleRepository.save(userRole);
+
         User admin = new User();
 
         admin.setFirstName("Anna")
                 .setLastName("Karerina")
-                .setPassword(passwordEncoder.encode("topSecret"))
-                .setUsername("anna_k");
+                .setPassword(passwordEncoder.encode("topsecret"))
+                .setUsername("anna_k")
+                .setUserRoles(List.of(userRole,adminRole));
+
         setCurrentTimestamp(admin);
 
+        User user = new User();
+
+        user.setFirstName("Peter")
+                .setLastName("Ivanov")
+                .setPassword(passwordEncoder.encode("topsecret"))
+                .setUsername("peter")
+                .setUserRoles(List.of(userRole));
+
+        setCurrentTimestamp(user);
+
         this.userRepository.save(admin);
+        this.userRepository.save(user);
     }
 
 
