@@ -1,7 +1,6 @@
 package com.example.mobiLelele.mobiLelele.web;
 
 import com.example.mobiLelele.mobiLelele.model.service.UserLoginServiceModel;
-import com.example.mobiLelele.mobiLelele.security.CurrentUser;
 import com.example.mobiLelele.mobiLelele.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
