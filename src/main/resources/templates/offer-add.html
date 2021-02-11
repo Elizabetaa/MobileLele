@@ -27,9 +27,9 @@
 
             <div class="form-group col-md-6 mb-3">
                 <label class="text-center text-white font-weight-bold" for="modelEntity">Model</label>
-                <select name = "model" id="modelEntity" class="form-control">
+                <select th:value="*{model}" name="model" id="modelEntity" class="form-control">
                     <option value="">- Select a modelEntity -</option>
-                    <optgroup  th:each="b: ${brandsName}" th:label="${b.getName()}" >
+                    <optgroup th:each="b: ${brandsName}" th:label="${b.getName()}">
                         <option th:each="m:${b.getModels()}" th:text="${m.name}">Model</option>
                     </optgroup>
                 </select>
@@ -49,19 +49,19 @@
         <div class="row">
             <div class="form-group col-md-6 mb-3">
                 <label class="text-center text-white font-weight-bold" for="engine">Engine</label>
-                <select name = "engine" id="engine" class="form-control">
+                <select name="engine" id="engine" class="form-control">
                     <option value="">- Select engine type -</option>
                     <option th:each="e:${engines}" th:text="${e}">
                         Engine type
                     </option>
                 </select>
-                <p  th:if="${#fields.hasErrors('engine')}" class="errors alert alert-danger">
+                <p th:if="${#fields.hasErrors('engine')}" class="errors alert alert-danger">
                     Engine type is required.
                 </p>
             </div>
             <div class="form-group col-md-6 mb-3">
                 <label class="text-center text-white font-weight-bold" for="transmission">Transmission</label>
-                <select name = "transmission" id="transmission" class="form-control">
+                <select name="transmission" id="transmission" class="form-control">
                     <option value="">- Select transmission type -</option>
                     <option th:each="t:${transmissions}" th:text="${t}"> Transmission type
                     </option>
@@ -74,7 +74,7 @@
         <div class="row">
             <div class="form-group col-md-6 mb-3">
                 <label for="year" class="text-white font-weight-bold">Year</label>
-                <input name = "year"  id="year" type="number" min="1900" max="2099" step="1" class="form-control"
+                <input name="year" id="year" type="number" min="1900" max="2099" step="1" class="form-control"
                        placeholder="Manufacturing year"/>
                 <p th:if="${#fields.hasErrors('year')}" class="errors alert alert-danger">
                     Manufacturing year is required.
@@ -82,7 +82,7 @@
             </div>
             <div class="form-group col-md-6 mb-3">
                 <label for="mileage" class="text-white font-weight-bold">Mileage</label>
-                <input name = "mileage" id="mileage" type="number" min="0" max="900000" step="1000"
+                <input name="mileage" id="mileage" type="number" min="0" max="900000" step="1000"
                        class="form-control"
                        placeholder="Mileage in kilometers"/>
                 <p th:if="${#fields.hasErrors('mileage')}" class="errors alert alert-danger">
@@ -93,7 +93,9 @@
 
         <div class="form-group">
             <label class="text-white font-weight-bold" for="description">Description</label>
-            <textarea id="description" name = "description"   type="textarea" class="form-control" rows="3"
+            <textarea th:text="*{description}"
+                      th:errorclass="is-invalid"
+                      id="description" name="description" type="textarea" class="form-control" rows="3"
                       placeholder="Description"></textarea>
             <p th:if="${#fields.hasErrors('description')}" class="errors alert alert-danger">
                 Description is required.
@@ -101,7 +103,8 @@
         </div>
         <div class="form-group">
             <label class="text-white font-weight-bold" for="imageUrl">Image URL</label>
-            <input name = "imageUrl"  id="imageUrl" type="url" class="form-control"
+            <input th:text="*{description}"
+                   th:errorclass="is-invalid"name="imageUrl" id="imageUrl" type="url" class="form-control"
                    placeholder="Put vehicle image URL here">
             <p th:if="${#fields.hasErrors('imageUrl')}" class="errors alert alert-danger">
                 Vehicle image URL is required.
@@ -119,7 +122,7 @@
 </div>
 
 <div>
-    <footer> </footer>
+    <footer></footer>
 </div>
 
 </body>
