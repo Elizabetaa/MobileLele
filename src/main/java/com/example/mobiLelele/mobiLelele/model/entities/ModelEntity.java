@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "models")
-public class Model extends BaseEntity {
+public class ModelEntity extends BaseEntity {
 
     private String name;
 
@@ -27,7 +27,7 @@ public class Model extends BaseEntity {
         return name;
     }
 
-    public Model setName(String name) {
+    public ModelEntity setName(String name) {
         this.name = name;
         return this;
     }
@@ -36,7 +36,7 @@ public class Model extends BaseEntity {
         return category;
     }
 
-    public Model setCategory(Categories category) {
+    public ModelEntity setCategory(Categories category) {
         this.category = category;
         return this;
     }
@@ -45,7 +45,7 @@ public class Model extends BaseEntity {
         return imageUrl;
     }
 
-    public Model setImageUrl(String imageUrl) {
+    public ModelEntity setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
         return this;
     }
@@ -54,7 +54,7 @@ public class Model extends BaseEntity {
         return startYear;
     }
 
-    public Model setStartYear(int startYear) {
+    public ModelEntity setStartYear(int startYear) {
         this.startYear = startYear;
         return this;
     }
@@ -63,7 +63,7 @@ public class Model extends BaseEntity {
         return endYear;
     }
 
-    public Model setEndYear(Integer endYear) {
+    public ModelEntity setEndYear(Integer endYear) {
         this.endYear = endYear;
         return this;
     }
@@ -72,7 +72,7 @@ public class Model extends BaseEntity {
         return brand;
     }
 
-    public Model setBrand(Brand brand) {
+    public ModelEntity setBrand(Brand brand) {
         this.brand = brand;
         return this;
     }

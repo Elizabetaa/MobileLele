@@ -49,11 +49,11 @@ public class DBInit implements CommandLineRunner {
 
         this.brandRepository.saveAll(List.of(hondaBrand, fordBrand));
 
-        Model fiestaModel = initFiesta(fordBrand);
-        Model escortModel = initEscort(hondaBrand);
+        ModelEntity fiestaModelEntity = initFiesta(fordBrand);
+        ModelEntity escortModelEntity = initEscort(hondaBrand);
         initNC750S(hondaBrand);
-        createFiestaOffer(fiestaModel);
-        createHondaOffer(escortModel);
+        createFiestaOffer(fiestaModelEntity);
+        createHondaOffer(escortModelEntity);
 
         initUsers();
 
@@ -91,7 +91,7 @@ public class DBInit implements CommandLineRunner {
     }
 
 
-    private void createHondaOffer(Model model) {
+    private void createHondaOffer(ModelEntity modelEntity) {
         Offer hondaOffer = new Offer();
 
         hondaOffer.setEngine(Engines.DIESEL)
@@ -101,14 +101,14 @@ public class DBInit implements CommandLineRunner {
                 .setYear(1967)
                 .setDescription("It's fought every day.")
                 .setTransmission(Transmissions.MANUAL)
-                .setModel(model);
+                .setModel(modelEntity);
 
         setCurrentTimestamp(hondaOffer);
 
         offerRepository.save(hondaOffer);
     }
 
-    private void createFiestaOffer(Model model) {
+    private void createFiestaOffer(ModelEntity modelEntity) {
         Offer fiestaOffer = new Offer();
 
         fiestaOffer.setEngine(Engines.GASOLINE)
@@ -118,15 +118,15 @@ public class DBInit implements CommandLineRunner {
                 .setYear(2019)
                 .setDescription("It's fought every day. In the winter is in garage.")
                 .setTransmission(Transmissions.MANUAL)
-                .setModel(model);
+                .setModel(modelEntity);
 
         setCurrentTimestamp(fiestaOffer);
 
         offerRepository.save(fiestaOffer);
     }
 
-    private Model initNC750S(Brand hondaBrand) {
-        Model NC750S = new Model();
+    private ModelEntity initNC750S(Brand hondaBrand) {
+        ModelEntity NC750S = new ModelEntity();
         NC750S.setName("Escort")
                 .setCategory(Categories.Motorcycle)
                 .setImageUrl("https://www.motorcyclespecs.co.za/Gallery%20B/Honda%20NC750S%2014%20%207.jpg")
@@ -136,8 +136,8 @@ public class DBInit implements CommandLineRunner {
         return modelRepository.save(NC750S);
     }
 
-    private Model initEscort(Brand hondaBrand) {
-        Model escort = new Model();
+    private ModelEntity initEscort(Brand hondaBrand) {
+        ModelEntity escort = new ModelEntity();
         escort.setName("Escort")
                 .setCategory(Categories.Car)
                 .setImageUrl("https://cdna.artstation.com/p/assets/images/images/008/654/944/large/kiran-r-1970-ford-escort-cosworth-4.jpg?1514316558")
@@ -148,8 +148,8 @@ public class DBInit implements CommandLineRunner {
         return modelRepository.save(escort);
     }
 
-    private Model initFiesta(Brand fordBrand) {
-        Model fiesta = new Model();
+    private ModelEntity initFiesta(Brand fordBrand) {
+        ModelEntity fiesta = new ModelEntity();
         fiesta.setName("Fiesta")
                 .setCategory(Categories.Car)
                 .setImageUrl("https://cdn3.focus.bg/autodata/i/ford/fiesta/fiesta-vi-mk7-mk8/medium/5f95f6ee7628df63ef880d8f3ac91f3a.jpg")

@@ -1,41 +1,45 @@
-package com.example.mobiLelele.mobiLelele.model.entities;
+package com.example.mobiLelele.mobiLelele.model.service;
 
 import com.example.mobiLelele.mobiLelele.model.entities.enums.Engines;
 import com.example.mobiLelele.mobiLelele.model.entities.enums.Transmissions;
+import org.hibernate.validator.constraints.Length;
 
-import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.math.BigDecimal;
 
-@Entity
-@Table(name = "offers")
-public class Offer extends BaseEntity{
+public class OffersServiceModel {
 
-    @Enumerated(EnumType.STRING)
+    @NotNull
+    @Length(min = 1)
+    private String model;
+    @NotNull
     private Engines engine;
+    @NotNull
+    @Length(min = 6)
     private String imageUrl;
+    @NotNull
+    @Positive()
     private int mileage;
+    @NotNull
+    @DecimalMin(value = "100")
     private BigDecimal price;
+    @NotNull
     private int year;
+    @Length(min = 6)
     private String description;
-    @Enumerated(EnumType.STRING)
+    @NotNull
     private Transmissions transmission;
 
-    @ManyToOne()
-    @JoinColumn(name = "model_id")
-    private ModelEntity modelEntity;
-
-//
-//    @ManyToOne()
-//    @JoinColumn(name = "seller_id")
-//    private User seller;
-
-
+    public OffersServiceModel() {
+    }
 
     public Engines getEngine() {
         return engine;
     }
 
-    public Offer setEngine(Engines engine) {
+    public OffersServiceModel setEngine(Engines engine) {
         this.engine = engine;
         return this;
     }
@@ -44,7 +48,7 @@ public class Offer extends BaseEntity{
         return imageUrl;
     }
 
-    public Offer setImageUrl(String imageUrl) {
+    public OffersServiceModel setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
         return this;
     }
@@ -53,7 +57,7 @@ public class Offer extends BaseEntity{
         return mileage;
     }
 
-    public Offer setMileage(int mileage) {
+    public OffersServiceModel setMileage(int mileage) {
         this.mileage = mileage;
         return this;
     }
@@ -62,7 +66,7 @@ public class Offer extends BaseEntity{
         return price;
     }
 
-    public Offer setPrice(BigDecimal price) {
+    public OffersServiceModel setPrice(BigDecimal price) {
         this.price = price;
         return this;
     }
@@ -71,7 +75,7 @@ public class Offer extends BaseEntity{
         return year;
     }
 
-    public Offer setYear(int year) {
+    public OffersServiceModel setYear(int year) {
         this.year = year;
         return this;
     }
@@ -80,7 +84,7 @@ public class Offer extends BaseEntity{
         return description;
     }
 
-    public Offer setDescription(String description) {
+    public OffersServiceModel setDescription(String description) {
         this.description = description;
         return this;
     }
@@ -89,27 +93,17 @@ public class Offer extends BaseEntity{
         return transmission;
     }
 
-    public Offer setTransmission(Transmissions transmission) {
+    public OffersServiceModel setTransmission(Transmissions transmission) {
         this.transmission = transmission;
         return this;
     }
 
-    public ModelEntity getModel() {
-        return modelEntity;
+    public String getModel() {
+        return model;
     }
 
-    public Offer setModel(ModelEntity modelEntity) {
-        this.modelEntity = modelEntity;
+    public OffersServiceModel setModel(String model) {
+        this.model = model;
         return this;
     }
-
-//
-//    public User getSeller() {
-//        return seller;
-//    }
-//
-//    public Offer setSeller(User seller) {
-//        this.seller = seller;
-//        return this;
-//    }
 }

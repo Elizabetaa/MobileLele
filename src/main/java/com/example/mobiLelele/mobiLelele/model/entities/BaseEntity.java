@@ -3,7 +3,7 @@ package com.example.mobiLelele.mobiLelele.model.entities;
 import javax.persistence.*;
 import java.time.Instant;
 @MappedSuperclass
-public class BaseEntity {
+public abstract class BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +22,15 @@ public class BaseEntity {
     public BaseEntity setId(Long id) {
         this.id = id;
         return this;
+    }
+    @PrePersist
+    public void prePersist(){
+        setCreated(Instant.now());
+        setUpdated(Instant.now());
+    }
+    @PreUpdate
+    public void preUpdate(){
+        setUpdated(Instant.now());
     }
 
     public Instant getCreated() {

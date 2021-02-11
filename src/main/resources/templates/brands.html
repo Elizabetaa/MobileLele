@@ -36,8 +36,8 @@
                         <th>Picture</th>
                     </tr>
                     <tr
-                    th:each="model, iter: ${brand.models}"
-                    th:object="${model}">
+                    th:each="modelEntity, iter: ${brand.models}"
+                    th:object="${modelEntity}">
                         <th th:text="${iter.index} + 1">No</th>
                         <th th:text="*{name}">Model Name</th>
                         <th th:text="*{category}">Model Category</th>

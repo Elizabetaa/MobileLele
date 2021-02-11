@@ -1,9 +1,10 @@
 package com.example.mobiLelele.mobiLelele.service.impl;
 
 import com.example.mobiLelele.mobiLelele.model.entities.Brand;
-import com.example.mobiLelele.mobiLelele.model.entities.Model;
+import com.example.mobiLelele.mobiLelele.model.entities.ModelEntity;
 import com.example.mobiLelele.mobiLelele.model.view.BrandViewModel;
 import com.example.mobiLelele.mobiLelele.model.view.ModelViewModel;
+import com.example.mobiLelele.mobiLelele.repositoriy.BrandRepository;
 import com.example.mobiLelele.mobiLelele.repositoriy.ModelRepository;
 import com.example.mobiLelele.mobiLelele.service.BrandService;
 import org.modelmapper.ModelMapper;
@@ -17,12 +18,13 @@ import java.util.Optional;
 @Service
 public class BrandServiceImpl implements BrandService {
 
-
+    private final BrandRepository brandRepository;
     private ModelRepository modelRepository;
     private ModelMapper modelMapper;
 
-    public BrandServiceImpl(ModelRepository modelRepository,
+    public BrandServiceImpl(BrandRepository brandRepository, ModelRepository modelRepository,
                             ModelMapper modelMapper){
+        this.brandRepository = brandRepository;
         this.modelRepository = modelRepository;
         this.modelMapper = modelMapper;
     }
@@ -30,9 +32,9 @@ public class BrandServiceImpl implements BrandService {
     @Override
     public List<BrandViewModel> getAllBrands() {
         List<BrandViewModel> result = new ArrayList<>();
-        List<Model> allModels = modelRepository.findAll();
+        List<ModelEntity> allModelEntities = modelRepository.findAll();
 
-        allModels.forEach(m -> {
+        allModelEntities.forEach(m -> {
             Brand brandEntity = m.getBrand();
             Optional<BrandViewModel> brandViewModel = findByName(result,brandEntity.getName());
 
@@ -49,6 +51,7 @@ public class BrandServiceImpl implements BrandService {
         });
         return result;
     }
+
 
     private static Optional<BrandViewModel> findByName (List<BrandViewModel> allModels, String name){
         return  allModels

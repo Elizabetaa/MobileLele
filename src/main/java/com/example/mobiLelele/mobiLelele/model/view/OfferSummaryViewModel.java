@@ -1,11 +1,9 @@
 package com.example.mobiLelele.mobiLelele.model.view;
 
-import com.example.mobiLelele.mobiLelele.model.entities.Model;
+import com.example.mobiLelele.mobiLelele.model.entities.ModelEntity;
 import com.example.mobiLelele.mobiLelele.model.entities.enums.Engines;
 import com.example.mobiLelele.mobiLelele.model.entities.enums.Transmissions;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import java.math.BigDecimal;
 
 public class OfferSummaryViewModel {
@@ -16,7 +14,7 @@ public class OfferSummaryViewModel {
     private Transmissions transmission;
     private Engines engine;
     private int year;
-    private Model model;
+    private ModelEntity modelEntity;
 
     public String getImageUrl() {
         return imageUrl;
@@ -72,12 +70,12 @@ public class OfferSummaryViewModel {
         return this;
     }
 
-    public Model getModel() {
-        return model;
+    public ModelEntity getModel() {
+        return modelEntity;
     }
 
-    public OfferSummaryViewModel setModel(Model model) {
-        this.model = model;
+    public OfferSummaryViewModel setModel(ModelEntity modelEntity) {
+        this.modelEntity = modelEntity;
         return this;
     }
 }
