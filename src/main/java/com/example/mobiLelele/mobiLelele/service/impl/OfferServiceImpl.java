@@ -42,13 +42,10 @@ public class OfferServiceImpl implements OfferService {
     }
 
     @Override
-    public void updateOffer(OfferUpdate map, String model) {
+    public void addOffer(OfferUpdate map, String model) {
         ModelEntity modelEntity = this.modelRepository.findByName(model);
         map.setModelEntity(modelEntity);
-
-
         this.offerRepository.save(this.modelMapper.map(map,Offer.class));
-
     }
 
 

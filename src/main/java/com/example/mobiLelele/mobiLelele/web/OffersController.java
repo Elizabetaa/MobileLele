@@ -7,7 +7,6 @@ import com.example.mobiLelele.mobiLelele.model.view.OfferUpdate;
 import com.example.mobiLelele.mobiLelele.repositoriy.ModelRepository;
 import com.example.mobiLelele.mobiLelele.service.BrandService;
 import com.example.mobiLelele.mobiLelele.service.OfferService;
-import org.hibernate.sql.Update;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -62,9 +61,14 @@ public class OffersController {
             return "redirect:add";
         }
 
-        this.offerService.updateOffer(this.modelMapper.map(offersServiceModel, OfferUpdate.class), offersServiceModel.getModel());
+        this.offerService.addOffer(this.modelMapper.map(offersServiceModel, OfferUpdate.class), offersServiceModel.getModel());
 
         return "redirect:/offers/all";
+    }
+
+    @GetMapping("/details")
+    public String details(){
+        return "details";
     }
 }
 

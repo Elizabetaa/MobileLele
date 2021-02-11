@@ -9,5 +9,5 @@ public interface OfferService {
 
     List<OfferSummaryViewModel> getAllOffers();
 
-    void updateOffer(OfferUpdate map, String model);
+    void addOffer(OfferUpdate map, String model);
 }

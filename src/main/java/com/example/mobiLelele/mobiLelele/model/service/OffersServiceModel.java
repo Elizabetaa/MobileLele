@@ -2,22 +2,24 @@ package com.example.mobiLelele.mobiLelele.model.service;
 
 import com.example.mobiLelele.mobiLelele.model.entities.enums.Engines;
 import com.example.mobiLelele.mobiLelele.model.entities.enums.Transmissions;
+import com.example.mobiLelele.mobiLelele.model.validations.YearOnPastOrPresent;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
 import java.math.BigDecimal;
 
 public class OffersServiceModel {
 
     @NotNull
-    @Length(min = 1)
+    @Length(min = 3)
     private String model;
     @NotNull
     private Engines engine;
     @NotNull
-    @Length(min = 6)
+    @Pattern(regexp = "http[s]?:\\/\\/.+")
     private String imageUrl;
     @NotNull
     @Positive()
@@ -26,6 +28,7 @@ public class OffersServiceModel {
     @DecimalMin(value = "100")
     private BigDecimal price;
     @NotNull
+    @YearOnPastOrPresent(minYear = 1930)
     private int year;
     @Length(min = 6)
     private String description;
