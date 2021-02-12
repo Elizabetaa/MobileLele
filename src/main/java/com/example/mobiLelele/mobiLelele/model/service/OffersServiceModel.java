@@ -14,9 +14,6 @@ import java.math.BigDecimal;
 public class OffersServiceModel {
 
     @NotNull
-    @Length(min = 1)
-    private String model;
-    @NotNull
     private Engines engine;
     @NotNull
     @Pattern(regexp = "http[s]?:\\/\\/.+")
@@ -112,12 +109,5 @@ public class OffersServiceModel {
         return this;
     }
 
-    public String getModel() {
-        return model;
-    }
 
-    public OffersServiceModel setModel(String model) {
-        this.model = model;
-        return this;
-    }
 }

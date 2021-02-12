@@ -4,13 +4,9 @@ import com.example.mobiLelele.mobiLelele.model.entities.ModelEntity;
 import com.example.mobiLelele.mobiLelele.model.entities.enums.Engines;
 import com.example.mobiLelele.mobiLelele.model.entities.enums.Transmissions;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import java.math.BigDecimal;
 
-public class OfferUpdate {
+public class OfferViewModel {
 
     private Engines engine;
     private String imageUrl;
@@ -21,14 +17,14 @@ public class OfferUpdate {
     private Transmissions transmission;
     private ModelEntity modelEntity;
 
-    public OfferUpdate() {
+    public OfferViewModel() {
     }
 
     public Engines getEngine() {
         return engine;
     }
 
-    public OfferUpdate setEngine(Engines engine) {
+    public OfferViewModel setEngine(Engines engine) {
         this.engine = engine;
         return this;
     }
@@ -37,7 +33,7 @@ public class OfferUpdate {
         return imageUrl;
     }
 
-    public OfferUpdate setImageUrl(String imageUrl) {
+    public OfferViewModel setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
         return this;
     }
@@ -46,7 +42,7 @@ public class OfferUpdate {
         return mileage;
     }
 
-    public OfferUpdate setMileage(int mileage) {
+    public OfferViewModel setMileage(int mileage) {
         this.mileage = mileage;
         return this;
     }
@@ -55,7 +51,7 @@ public class OfferUpdate {
         return price;
     }
 
-    public OfferUpdate setPrice(BigDecimal price) {
+    public OfferViewModel setPrice(BigDecimal price) {
         this.price = price;
         return this;
     }
@@ -64,7 +60,7 @@ public class OfferUpdate {
         return year;
     }
 
-    public OfferUpdate setYear(int year) {
+    public OfferViewModel setYear(int year) {
         this.year = year;
         return this;
     }
@@ -73,7 +69,7 @@ public class OfferUpdate {
         return description;
     }
 
-    public OfferUpdate setDescription(String description) {
+    public OfferViewModel setDescription(String description) {
         this.description = description;
         return this;
     }
@@ -82,7 +78,7 @@ public class OfferUpdate {
         return transmission;
     }
 
-    public OfferUpdate setTransmission(Transmissions transmission) {
+    public OfferViewModel setTransmission(Transmissions transmission) {
         this.transmission = transmission;
         return this;
     }
@@ -91,7 +87,7 @@ public class OfferUpdate {
         return modelEntity;
     }
 
-    public OfferUpdate setModelEntity(ModelEntity modelEntity) {
+    public OfferViewModel setModelEntity(ModelEntity modelEntity) {
         this.modelEntity = modelEntity;
         return this;
     }

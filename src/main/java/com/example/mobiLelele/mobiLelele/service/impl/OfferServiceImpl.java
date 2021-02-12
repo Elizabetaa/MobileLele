@@ -3,7 +3,7 @@ package com.example.mobiLelele.mobiLelele.service.impl;
 import com.example.mobiLelele.mobiLelele.model.entities.ModelEntity;
 import com.example.mobiLelele.mobiLelele.model.entities.Offer;
 import com.example.mobiLelele.mobiLelele.model.view.OfferSummaryViewModel;
-import com.example.mobiLelele.mobiLelele.model.view.OfferUpdate;
+import com.example.mobiLelele.mobiLelele.model.view.OfferViewModel;
 import com.example.mobiLelele.mobiLelele.repositoriy.ModelRepository;
 import com.example.mobiLelele.mobiLelele.repositoriy.OfferRepository;
 import com.example.mobiLelele.mobiLelele.service.OfferService;
@@ -42,10 +42,13 @@ public class OfferServiceImpl implements OfferService {
     }
 
     @Override
-    public void addOffer(OfferUpdate map, String model) {
-        ModelEntity modelEntity = this.modelRepository.findByName(model);
-        map.setModelEntity(modelEntity);
-        this.offerRepository.save(this.modelMapper.map(map,Offer.class));
+    public long addOffer(OfferViewModel map) {
+        Offer offer = this.modelMapper.map(map,Offer.class);
+        ModelEntity modelEntity = map.getModelEntity();
+        offer.setModel(modelEntity);
+        this.offerRepository.save(offer);
+
+        return offer.getId();
     }
 
 

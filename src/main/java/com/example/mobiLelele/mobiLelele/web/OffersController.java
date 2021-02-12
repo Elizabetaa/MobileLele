@@ -3,15 +3,16 @@ package com.example.mobiLelele.mobiLelele.web;
 import com.example.mobiLelele.mobiLelele.model.entities.enums.Engines;
 import com.example.mobiLelele.mobiLelele.model.entities.enums.Transmissions;
 import com.example.mobiLelele.mobiLelele.model.service.OffersServiceModel;
-import com.example.mobiLelele.mobiLelele.model.view.OfferUpdate;
-import com.example.mobiLelele.mobiLelele.repositoriy.ModelRepository;
+import com.example.mobiLelele.mobiLelele.model.view.OfferViewModel;
 import com.example.mobiLelele.mobiLelele.service.BrandService;
+import com.example.mobiLelele.mobiLelele.service.ModelService;
 import com.example.mobiLelele.mobiLelele.service.OfferService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -23,13 +24,13 @@ import javax.validation.Valid;
 public class OffersController {
     private final OfferService offerService;
     private final BrandService brandService;
-    private final ModelRepository modelRepository;
+    private final ModelService modelService;
     private final ModelMapper modelMapper;
 
-    public OffersController(OfferService offerService, BrandService brandService, ModelRepository modelRepository, ModelMapper modelMapper) {
+    public OffersController(OfferService offerService, BrandService brandService, ModelService modelService, ModelMapper modelMapper) {
         this.offerService = offerService;
         this.brandService = brandService;
-        this.modelRepository = modelRepository;
+        this.modelService = modelService;
         this.modelMapper = modelMapper;
     }
 
@@ -46,29 +47,31 @@ public class OffersController {
         model.addAttribute("engines", Engines.values());
         model.addAttribute("transmissions", Transmissions.values());
 
-        if (!model.containsAttribute("offersServiceModel")){
-            model.addAttribute("offersServiceModel",new OffersServiceModel());
+        if (!model.containsAttribute("offersServiceModel")) {
+            model.addAttribute("offersServiceModel", new OffersServiceModel());
         }
         return "offer-add";
     }
 
     @PostMapping("/add")
-    private String uploadOffer(@Valid OffersServiceModel offersServiceModel, BindingResult bindingResult, RedirectAttributes redirectAttributes){
+    private String uploadOffer(@Valid OffersServiceModel offersServiceModel, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 
-        if (bindingResult.hasErrors()){
-            redirectAttributes.addFlashAttribute("offersServiceModel",offersServiceModel);
-            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.offersServiceModel",bindingResult);
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("offersServiceModel", offersServiceModel);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.offersServiceModel", bindingResult);
 
             return "redirect:add";
         }
+        OfferViewModel offerViewModel = this.modelMapper.map(offersServiceModel, OfferViewModel.class);
+        offerViewModel.setModelEntity(modelService.findById(Long.valueOf(offersServiceModel.getModelId())));
+        long offerId = this.offerService.addOffer(offerViewModel);
 
-        this.offerService.addOffer(this.modelMapper.map(offersServiceModel, OfferUpdate.class), offersServiceModel.getModel());
-
-        return "redirect:/offers/all";
+        return "redirect:/offers/offer/" + offerId;
     }
 
-    @GetMapping("/details")
-    public String details(){
+    @GetMapping("/offer/{id}")
+    public String offerDetails(@PathVariable String id) {
+
         return "details";
     }
 }
