@@ -38,7 +38,14 @@
                 </li>
             </ul>
             <div class="card-body">
-                <a class="card-link" href="/">Update</a>
+                <form
+                        th:action="@{/offers/offer/update/{id}/(id=${offer.getId()})}"
+                        th:method="get">
+                    <input
+                            class="card-link"
+                            type="submit"
+                            value="Update">
+                </form>
                 <a class="card-link" href="/">Delete</a>
             </div>
         </div>

@@ -76,6 +76,13 @@ public class OffersController {
 
         return "details";
     }
+    @GetMapping("/offer/update/{id}")
+    public String offerUpdate(@PathVariable Long id,Model model) {
+        model.addAttribute("offer",this.offerService.findById(id));
+        model.addAttribute("id",id);
+
+        return "update";
+    }
 }
 
 
