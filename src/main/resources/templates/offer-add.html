@@ -41,7 +41,7 @@
                     </optgroup>
                 </select>
                 <p th:if="${#fields.hasErrors('modelId')}" class="errors alert alert-danger">
-                    Vechicle modelEntity is required.
+                    Vehicle modelEntity is invalid.
                 </p>
             </div>
             <div class="form-group col-md-6 mb-3">
@@ -52,7 +52,7 @@
                        type="number" min="0" step="100" class="form-control"
                        placeholder="Suggested price"/>
                 <p th:if="${#fields.hasErrors('price')}" class="errors alert alert-danger">
-                    Suggested price is required.
+                    Suggested price is invalid.
                 </p>
             </div>
         </div>
@@ -70,7 +70,7 @@
                     </option>
                 </select>
                 <p th:if="${#fields.hasErrors('engine')}" class="errors alert alert-danger">
-                    Engine type is required.
+                    Engine type is invalid.
                 </p>
             </div>
             <div class="form-group col-md-6 mb-3">
@@ -81,7 +81,7 @@
                     </option>
                 </select>
                 <p th:if="${#fields.hasErrors('transmission')}" class="errors alert alert-danger">
-                    Transmission type is required.
+                    Transmission type is invalid.
                 </p>
             </div>
         </div>
@@ -91,7 +91,7 @@
                 <input th:value="*{year}" name="year" id="year" type="number" min="1900" max="2099" step="1" class="form-control"
                        placeholder="Manufacturing year"/>
                 <p th:if="${#fields.hasErrors('year')}" class="errors alert alert-danger">
-                    Manufacturing year is required.
+                    Manufacturing year is invalid.
                 </p>
             </div>
             <div class="form-group col-md-6 mb-3">
@@ -100,7 +100,7 @@
                        class="form-control"
                        placeholder="Mileage in kilometers"/>
                 <p th:if="${#fields.hasErrors('mileage')}" class="errors alert alert-danger">
-                    Mileage in kilometers is required.
+                    Mileage in kilometers is invalid.
                 </p>
             </div>
         </div>
@@ -112,7 +112,7 @@
                       id="description" name="description" type="textarea" class="form-control" rows="3"
                       placeholder="Description"></textarea>
             <p th:if="${#fields.hasErrors('description')}" class="errors alert alert-danger">
-                Description is required.
+                Description must be have minimum 6 symbols.
             </p>
         </div>
         <div class="form-group">
@@ -122,7 +122,7 @@
                    name="imageUrl" id="imageUrl" type="url" class="form-control"
                    placeholder="Put vehicle image URL here">
             <p th:if="${#fields.hasErrors('imageUrl')}" class="errors alert alert-danger">
-                Vehicle image URL is required.
+                Vehicle image URL is invalid.
             </p>
         </div>
 
