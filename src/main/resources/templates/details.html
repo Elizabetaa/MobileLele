@@ -23,18 +23,18 @@
         <div class="offer card col-sm-2 col-md-3  col-lg-4 m-1 p-0" >
 
             <div class="card-body pb-1">
-                <h5 class="card-title">
+                <h5 class="card-title" th:text="|*{offer.getYear()} *{offer.getBrand().name} *{offer.getModel().name}|">
                     Offer year Brand name Model name</h5>
             </div>
             <ul class="offer-details list-group list-group-flush">
                 <li class="list-group-item">
-                    <div class="card-text"><span>• Mileage</span></div>
-                    <div class="card-text"><span>• Price</span></div>
-                    <div class="card-text"><span>• Engine type</span></div>
-                    <div class="card-text"><span>• Transmission type</span></div>
-                    <div class="card-text"><span>• Offer created</span></div>
-                    <div class="card-text"><span>• Offer modified</span></div>
-                    <div class="card-text"><span>• Seller - First and Last name</span></div>
+                    <div class="card-text" th:text="|Mielage ${offer.mileage}| "><span>• Mileage</span></div>
+                    <div class="card-text" th:text="|Price ${offer.price}|" ><span>• Price</span></div>
+                    <div class="card-text" th:text="|Engine type ${offer.engine.name()}|" ><span>• Engine type</span></div>
+                    <div class="card-text" th:text="|Transmission type ${offer.transmission.name()}|" ><span>• Transmission type</span></div>
+                    <div class="card-text" th:text="|Offer created ${offer.getYear()}|" ><span>• Offer created</span></div>
+                    <div class="card-text" th:text="|Offer modified ${offer.getYear()}|" ><span>• Offer modified</span></div>
+                    <div class="card-text" th:text="|Seller - ${offer.getSeller().firstName} ${offer.getSeller().lastName}|" ><span>• Seller - First and Last name</span></div>
                 </li>
             </ul>
             <div class="card-body">
@@ -43,7 +43,7 @@
             </div>
         </div>
         <div class="offer card col-sm-2 col-md-3  col-lg-4 m-1 p-0">
-            <img src="/" class="card-img-top"  alt="Car image">
+            <img th:src="*{offer.getImageUrl()}" class="card-img-top"  alt="Car image">
         </div>
     </div>
 </div>

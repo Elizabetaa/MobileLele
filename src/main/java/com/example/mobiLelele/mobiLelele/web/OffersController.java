@@ -70,7 +70,9 @@ public class OffersController {
     }
 
     @GetMapping("/offer/{id}")
-    public String offerDetails(@PathVariable String id) {
+    public String offerDetails(@PathVariable Long id,Model model) {
+        model.addAttribute("offer",this.offerService.findById(id));
+        model.addAttribute("id",id);
 
         return "details";
     }

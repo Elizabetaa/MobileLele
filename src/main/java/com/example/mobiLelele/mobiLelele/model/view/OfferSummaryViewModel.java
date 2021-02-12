@@ -1,6 +1,8 @@
 package com.example.mobiLelele.mobiLelele.model.view;
 
+import com.example.mobiLelele.mobiLelele.model.entities.Brand;
 import com.example.mobiLelele.mobiLelele.model.entities.ModelEntity;
+import com.example.mobiLelele.mobiLelele.model.entities.User;
 import com.example.mobiLelele.mobiLelele.model.entities.enums.Engines;
 import com.example.mobiLelele.mobiLelele.model.entities.enums.Transmissions;
 
@@ -8,6 +10,7 @@ import java.math.BigDecimal;
 
 public class OfferSummaryViewModel {
 
+    private Long id;
     private String imageUrl;
     private int mileage;
     private BigDecimal price;
@@ -15,13 +18,44 @@ public class OfferSummaryViewModel {
     private Engines engine;
     private int year;
     private ModelEntity modelEntity;
+    private Brand brand;
+
+
+    public Brand getBrand() {
+        return brand;
+    }
+
+    public OfferSummaryViewModel setBrand(Brand brand) {
+        this.brand = brand;
+        return this;
+    }
+
+    private  User seller;
 
     public String getImageUrl() {
         return imageUrl;
     }
 
+    public User getSeller() {
+        return seller;
+    }
+
+    public OfferSummaryViewModel setSeller(User seller) {
+        this.seller = seller;
+        return this;
+    }
+
     public OfferSummaryViewModel setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+        return this;
+    }
+
+    public ModelEntity getModelEntity() {
+        return modelEntity;
+    }
+
+    public OfferSummaryViewModel setModelEntity(ModelEntity modelEntity) {
+        this.modelEntity = modelEntity;
         return this;
     }
 
@@ -76,6 +110,15 @@ public class OfferSummaryViewModel {
 
     public OfferSummaryViewModel setModel(ModelEntity modelEntity) {
         this.modelEntity = modelEntity;
+        return this;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public OfferSummaryViewModel setId(Long id) {
+        this.id = id;
         return this;
     }
 }
