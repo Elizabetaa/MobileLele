@@ -34,6 +34,17 @@ public class OffersServiceModel {
     private String description;
     @NotNull
     private Transmissions transmission;
+    @NotNull
+    private Integer modelId;
+
+    public Integer getModelId() {
+        return modelId;
+    }
+
+    public OffersServiceModel setModelId(Integer modelId) {
+        this.modelId = modelId;
+        return this;
+    }
 
     public OffersServiceModel() {
     }

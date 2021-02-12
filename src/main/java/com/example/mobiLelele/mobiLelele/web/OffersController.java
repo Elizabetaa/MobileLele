@@ -42,9 +42,10 @@ public class OffersController {
     @GetMapping("/add")
     private String addOffer(Model model) {
 
-        model.addAttribute("brandsName", this.brandService.getAllBrands());
+        model.addAttribute("brands", this.brandService.getAllBrands());
         model.addAttribute("engines", Engines.values());
         model.addAttribute("transmissions", Transmissions.values());
+
         if (!model.containsAttribute("offersServiceModel")){
             model.addAttribute("offersServiceModel",new OffersServiceModel());
         }

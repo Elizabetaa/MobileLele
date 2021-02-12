@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 
 public class ModelViewModel {
 
+    private long id;
     private String name;
     private Categories category;
     private String imageUrl;
@@ -58,6 +59,15 @@ public class ModelViewModel {
 
     public ModelViewModel setEndYear(Integer endYear) {
         this.endYear = endYear;
+        return this;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public ModelViewModel setId(long id) {
+        this.id = id;
         return this;
     }
 

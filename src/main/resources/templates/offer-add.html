@@ -26,20 +26,30 @@
         <div class="row">
 
             <div class="form-group col-md-6 mb-3">
-                <label class="text-center text-white font-weight-bold" for="modelEntity">Model</label>
-                <select th:value="*{model}" name="model" id="modelEntity" class="form-control">
+                <label class="text-center text-white font-weight-bold" for="modelId">Model</label>
+                <select name="modelId" id="modelId" th:errorclass = "is-invalid" class="form-control">
                     <option value="">- Select a modelEntity -</option>
-                    <optgroup th:each="b: ${brandsName}" th:label="${b.getName()}">
-                        <option th:each="m:${b.getModels()}" th:text="${m.name}">Model</option>
+                    <optgroup th:each="brand: ${brands}"
+                              th:label="${brand.name}">
+                        <option
+                                th:each="brandMdel :${brand.models}"
+                                th:text="${brandMdel.name}"
+                                th:value="${brandMdel.id}"
+                                th:selected="${brandMdel.id}==*{modelId}"
+                        >Model
+                        </option>
                     </optgroup>
                 </select>
-                <p th:if="${#fields.hasErrors('model')}" class="errors alert alert-danger">
+                <p th:if="${#fields.hasErrors('modelId')}" class="errors alert alert-danger">
                     Vechicle modelEntity is required.
                 </p>
             </div>
             <div class="form-group col-md-6 mb-3">
                 <label for="price" class="text-white font-weight-bold">Price</label>
-                <input id="price" name="price" type="number" min="0" step="100" class="form-control"
+                <input id="price"
+                       name="price"
+                       th:value="*{price}"
+                       type="number" min="0" step="100" class="form-control"
                        placeholder="Suggested price"/>
                 <p th:if="${#fields.hasErrors('price')}" class="errors alert alert-danger">
                     Suggested price is required.
@@ -51,7 +61,11 @@
                 <label class="text-center text-white font-weight-bold" for="engine">Engine</label>
                 <select name="engine" id="engine" class="form-control">
                     <option value="">- Select engine type -</option>
-                    <option th:each="e:${engines}" th:text="${e}">
+                    <option th:each="e:${engines}"
+                            th:text="${e}"
+                            th:value="${e}"
+                            th:selected="${e}==*{engine}"
+                    >
                         Engine type
                     </option>
                 </select>
@@ -63,7 +77,7 @@
                 <label class="text-center text-white font-weight-bold" for="transmission">Transmission</label>
                 <select name="transmission" id="transmission" class="form-control">
                     <option value="">- Select transmission type -</option>
-                    <option th:each="t:${transmissions}" th:text="${t}"> Transmission type
+                    <option th:each="t:${transmissions}" th:text="${t}" th:value="${t}" th:selected="${t}==*{transmission}"> Transmission type
                     </option>
                 </select>
                 <p th:if="${#fields.hasErrors('transmission')}" class="errors alert alert-danger">
@@ -74,7 +88,7 @@
         <div class="row">
             <div class="form-group col-md-6 mb-3">
                 <label for="year" class="text-white font-weight-bold">Year</label>
-                <input name="year" id="year" type="number" min="1900" max="2099" step="1" class="form-control"
+                <input th:value="*{year}" name="year" id="year" type="number" min="1900" max="2099" step="1" class="form-control"
                        placeholder="Manufacturing year"/>
                 <p th:if="${#fields.hasErrors('year')}" class="errors alert alert-danger">
                     Manufacturing year is required.
@@ -82,7 +96,7 @@
             </div>
             <div class="form-group col-md-6 mb-3">
                 <label for="mileage" class="text-white font-weight-bold">Mileage</label>
-                <input name="mileage" id="mileage" type="number" min="0" max="900000" step="1000"
+                <input th:value="*{mileage}" name="mileage" id="mileage" type="number" min="0" max="900000" step="1000"
                        class="form-control"
                        placeholder="Mileage in kilometers"/>
                 <p th:if="${#fields.hasErrors('mileage')}" class="errors alert alert-danger">
@@ -103,8 +117,9 @@
         </div>
         <div class="form-group">
             <label class="text-white font-weight-bold" for="imageUrl">Image URL</label>
-            <input th:text="*{description}"
-                   th:errorclass="is-invalid"name="imageUrl" id="imageUrl" type="url" class="form-control"
+            <input th:value="*{imageUrl}"
+                   th:errorclass="is-invalid"
+                   name="imageUrl" id="imageUrl" type="url" class="form-control"
                    placeholder="Put vehicle image URL here">
             <p th:if="${#fields.hasErrors('imageUrl')}" class="errors alert alert-danger">
                 Vehicle image URL is required.
