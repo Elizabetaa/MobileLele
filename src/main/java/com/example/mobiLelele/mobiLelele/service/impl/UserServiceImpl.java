@@ -72,15 +72,14 @@ public class UserServiceImpl implements UserService {
         User user = modelMapper.map(userRegister, User.class);
 
         List<UserRole> all = this.userRoleRepository.findAll();
-        UserRole adminRole = all.get(0);
-        UserRole userRole = all.get(1);
+        UserRole adminRole = all.get(1);
+        UserRole userRole = all.get(0);
         if (userRegister.getUserRoles() == Roles.ADMIN){
           user.setUserRoles(List.of(userRole,adminRole));
         }else {
             user.setUserRoles(List.of(userRole));
         }
-
-        user.setCreated(Instant.now()).setUpdated(Instant.now());
+        user.setPassword(passwordEncoder.encode(userRegister.getPassword()));
         this.userRepository.save(user);
 
     }

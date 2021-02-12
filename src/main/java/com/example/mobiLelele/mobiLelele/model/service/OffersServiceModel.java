@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 public class OffersServiceModel {
 
     @NotNull
-    @Length(min = 3)
+    @Length(min = 1)
     private String model;
     @NotNull
     private Engines engine;
