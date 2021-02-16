@@ -19,6 +19,7 @@ public class OfferSummaryViewModel {
     private int year;
     private ModelEntity modelEntity;
     private Brand brand;
+    private String description;
 
 
     public Brand getBrand() {
@@ -119,6 +120,15 @@ public class OfferSummaryViewModel {
 
     public OfferSummaryViewModel setId(Long id) {
         this.id = id;
+        return this;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public OfferSummaryViewModel setDescription(String description) {
+        this.description = description;
         return this;
     }
 }

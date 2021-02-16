@@ -13,4 +13,6 @@ public interface OfferService {
     long addOffer(OfferViewModel map);
 
     OfferSummaryViewModel findById(Long valueOf);
+
+    long updateOffer(OfferViewModel offerViewModel);
 }

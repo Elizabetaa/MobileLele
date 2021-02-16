@@ -7,6 +7,7 @@ import com.example.mobiLelele.mobiLelele.model.view.OfferViewModel;
 import com.example.mobiLelele.mobiLelele.service.BrandService;
 import com.example.mobiLelele.mobiLelele.service.ModelService;
 import com.example.mobiLelele.mobiLelele.service.OfferService;
+import org.dom4j.rule.Mode;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -80,8 +81,33 @@ public class OffersController {
     public String offerUpdate(@PathVariable Long id,Model model) {
         model.addAttribute("offer",this.offerService.findById(id));
         model.addAttribute("id",id);
+        model.addAttribute("brands", this.brandService.getAllBrands());
+        model.addAttribute("engines", Engines.values());
+        model.addAttribute("transmissions", Transmissions.values());
 
+        if (!model.containsAttribute("offersServiceModel")) {
+            model.addAttribute("offersServiceModel", new OffersServiceModel());
+        }
         return "update";
+    }
+
+    @PostMapping("/offer/update/")
+    public String offerUpdateConfirm(@Valid OffersServiceModel offersServiceModel, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
+
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("offersServiceModel", offersServiceModel);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.offersServiceModel", bindingResult);
+
+            return "redirect:/offer/update";
+        }
+        model.containsAttribute("offer");
+
+
+        OfferViewModel offerViewModel = this.modelMapper.map(offersServiceModel, OfferViewModel.class);
+        offerViewModel.setModelEntity(modelService.findById(Long.valueOf(offersServiceModel.getModelId())));
+        long offerId = this.offerService.updateOffer(offerViewModel);
+
+        return "redirect:/offers/offer/" + offerId;
     }
 }
 

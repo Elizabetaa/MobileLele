@@ -68,5 +68,12 @@ public class OfferServiceImpl implements OfferService {
         return map;
     }
 
+    @Override
+    public long updateOffer(OfferViewModel offerViewModel) {
+        //TODO update Offer
+
+        return 0;
+    }
+
 
 }
